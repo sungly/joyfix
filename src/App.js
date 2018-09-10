@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 
+import styled from 'styled-components';
+
+const Text = styled.p`
+  font-size: 24px; 
+`;
+
 class App extends Component {
   render() {
     return (
-      <h1>APP</h1>
+      <Text>Testing App</Text>
     );
   }
 }
