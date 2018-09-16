@@ -21,6 +21,8 @@ const Title = styled.p`
 const Container = styled.div`
     display: flex;
     justify-content: space-evenly;
+
+    margin-bottom: 120px;
 `;
 
 const Image = styled.img`
