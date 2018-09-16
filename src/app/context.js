@@ -11,8 +11,6 @@ const default_appointment = {
 }
 
 const default_values = {
-    username: "",
-    password: "",
     phone_number:"",
     agree_ac: false,
     ...default_appointment,
@@ -28,35 +26,31 @@ const default_values = {
 const Context = React.createContext();
 
 class Provider extends React.Component {
-    state = {
-        ...default_values,
-        handleUsernameInput: this.handleUsernameInput,
-        handlePasswordInput: this.handlePasswordInput,
-        handleLogin: this.handleLogin
-    }
+    state = default_values
 
-    handleUsernameInput = (username) => {
-        this.setState( username );
-    }
 
-    handlePasswordInput = (password) => {
-        this.setState( password );
-    }
 
-    handleLogin = () => {
+    validateAccount = (username, password) => {
+        let flag = false; 
         this.state.accounts.forEach(account => {
-            if (account.username === this.state.username && 
-                account.password === this.state.password) {
-                return true;
+            if (account.username === username && 
+                account.password === password) {
+                flag = true;
             }
         });
-
-        return false;
+        return flag;
     }
 
     render() {
+        const values = {
+            ...this.state,
+            handleUsernameInput: this.handleUsernameInput,
+            handlePasswordInput: this.handlePasswordInput,
+            validateAccount: this.validateAccount
+        }
+
         return(
-            <Context.Provider value={this.state}>
+            <Context.Provider value={values}>
                 {this.props.children}
             </Context.Provider>
         )

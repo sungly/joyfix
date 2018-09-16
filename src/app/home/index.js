@@ -51,7 +51,6 @@ class Home extends Component {
           <Line />
            <Offer />
            <GetStarted/>
-
           <Line />
           <Footer />
         </PageContainer>
