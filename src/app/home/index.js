@@ -2,26 +2,24 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import NavBar from '../nav'
+import Footer from './footer';
 import { PageContainer } from '../shared/PageContainer'
 import LandingImage from '../images/landing_image.png'
-
-const Height = styled.div`
-  height: 800px; 
-`;
+import Offer from './offer';
+import GetStarted from './getstarted';
 
 const LandingContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  min-height: 550px;
 `;
 
 const Image = styled.img`
   width: 100%;
   height: auto;
-`;
 
-const LeftContainer = styled.div`
-  min-width: 700px;
+  max-width: 800px;
 `;
 
 const Title = styled.p`
@@ -33,19 +31,29 @@ const Subtitle = styled.p`
   font-size: 30px;
 `;
 
+const Line = styled.div`
+  border-bottom: 1px solid #000;
+`;
+
+
 class Home extends Component {
     render() {
       return (
         <PageContainer>
           <NavBar />
           <LandingContainer>
-            <LeftContainer>
+            <div>
               <Title>Joyfix</Title>
               <Subtitle>Fixing cars made easy!</Subtitle>
-            </LeftContainer>
+            </div>
             <Image src={LandingImage} alt="Landing"/>
           </LandingContainer>
-          <Height />
+          <Line />
+           <Offer />
+           <GetStarted/>
+
+          <Line />
+          <Footer />
         </PageContainer>
       );
     }
