@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const FormContainer = styled.div`
   width: 400px;
 
-  input[type=text], input[type=password], select {
+  input[type=text], input[type=password], input[type=tel], input[type=email], select {
       width: 100%;
       padding: 12px 20px;
       margin: 8px 0;

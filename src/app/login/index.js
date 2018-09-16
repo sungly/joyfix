@@ -6,7 +6,6 @@ import Form from '../shared/FormContainer';
 
 
 class Login extends Component {
-
   state = {
     username: "",
     password: "",
@@ -38,6 +37,7 @@ class Login extends Component {
           <Context.Consumer>
             {
               context => {
+                console.log(context)
                 return (
                   <Form.FormContainer>
                       <h1>Sign in to dashboard</h1>

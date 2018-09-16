@@ -11,13 +11,14 @@ const default_appointment = {
 }
 
 const default_values = {
-    phone_number:"",
-    agree_ac: false,
-    ...default_appointment,
+    appointment: default_appointment,
     accounts: [
         {
             username: "admin",
-            password: "admin"
+            password: "admin",
+            phone_number: "9051234512",
+            email: "admin@admin.com",
+            t_and_c: true,
         }
     ]
 }
@@ -27,8 +28,6 @@ const Context = React.createContext();
 
 class Provider extends React.Component {
     state = default_values
-
-
 
     validateAccount = (username, password) => {
         let flag = false; 
@@ -41,12 +40,24 @@ class Provider extends React.Component {
         return flag;
     }
 
+    /**
+     * TODO: new account not being added to state
+     */
+    registerAccount = (new_account) => {
+        const accounts = [...this.state.accounts, new_account];
+
+        this.setState({ accounts });
+
+        return true;
+    }
+
     render() {
         const values = {
             ...this.state,
             handleUsernameInput: this.handleUsernameInput,
             handlePasswordInput: this.handlePasswordInput,
-            validateAccount: this.validateAccount
+            validateAccount: this.validateAccount,
+            registerAccount: this.registerAccount
         }
 
         return(
