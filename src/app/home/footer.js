@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link as RouterLink } from 'react-router-dom';
+import Link from '../shared/Link';
 
 const Container = styled.div`
     display: flex;
@@ -12,18 +12,6 @@ const Container = styled.div`
 
     font-size: 22px;
 `;
-
-
-const Link = styled(RouterLink)`
-    text-decoration: none;
-    &:visited {
-        color: #000;
-    }
-    &:hover {
-        cursor: pointer;
-        text-decoration: underline;
-    }
-`
 
 const Footer = () => {
     return (

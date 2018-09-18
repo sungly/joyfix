@@ -41,7 +41,7 @@ class Provider extends React.Component {
     }
 
     /**
-     * TODO: new account not being added to state
+     * TODO: new account not being added to state properly
      */
     registerAccount = (new_account) => {
         const accounts = [...this.state.accounts, new_account];
