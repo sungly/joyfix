@@ -27,7 +27,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "precommit": "lint-staged",
-    "pretty": "prettier --write \"**/*.{json, js}\""
+    "pretty": "prettier --write \"src/**/*.{js,jsx}\""
   },
   "devDependencies": {
     "prettier": "1.14.2"
