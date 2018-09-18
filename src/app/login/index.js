@@ -3,6 +3,8 @@ import {withRouter} from "react-router-dom";
 
 import Context from "../context";
 import Form from '../shared/FormContainer';
+import NavBar from '../nav'
+import { PageContainer } from '../shared/PageContainer'
 
 
 class Login extends Component {
@@ -32,39 +34,42 @@ class Login extends Component {
 
   render() {
     return (
-      <Form.PageContainer>
-        <Context.Provider>
-          <Context.Consumer>
-            {
-              context => {
-                console.log(context)
-                return (
-                  <Form.FormContainer>
-                      <h1>Sign in to dashboard</h1>
-                      <input 
-                        type="text" 
-                        placeholder="Username" 
-                        onChange={ e => this.handleUsernameInput(e)}/>
-                      <input 
-                        type="password" 
-                        placeholder="password" 
-                        onChange={e => this.handlePasswordInput(e)}/><br/>
-                      {
-                        (this.state.invalidAccount? 
-                          <Form.ErrorMessage>
-                            Invalid username or password. Please try again!
-                          </Form.ErrorMessage> : null)
-                      }
-                      <Form.Button onClick={() => this.handleLogin(context.validateAccount)}>
-                        Sign in
-                      </Form.Button>
-                  </Form.FormContainer>
-                )
+      <PageContainer>
+        <NavBar />
+        <Form.PageContainer>
+          <Context.Provider>
+            <Context.Consumer>
+              {
+                context => {
+                  console.log(context)
+                  return (
+                    <Form.FormContainer>
+                        <h1>Sign in to dashboard</h1>
+                        <input 
+                          type="text" 
+                          placeholder="Username" 
+                          onChange={ e => this.handleUsernameInput(e)}/>
+                        <input 
+                          type="password" 
+                          placeholder="password" 
+                          onChange={e => this.handlePasswordInput(e)}/><br/>
+                        {
+                          (this.state.invalidAccount? 
+                            <Form.ErrorMessage>
+                              Invalid username or password. Please try again!
+                            </Form.ErrorMessage> : null)
+                        }
+                        <Form.Button onClick={() => this.handleLogin(context.validateAccount)}>
+                          Sign in
+                        </Form.Button>
+                    </Form.FormContainer>
+                  )
+                }
               }
-            }
-          </Context.Consumer>
-        </Context.Provider>
-      </Form.PageContainer>
+            </Context.Consumer>
+          </Context.Provider>
+        </Form.PageContainer>
+      </PageContainer>
     );
   }
 }

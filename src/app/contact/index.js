@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import Form from '../shared/FormContainer';
 import Link from '../shared/Link';
-
+import NavBar from '../nav'
+import { PageContainer } from '../shared/PageContainer'
 
 class ContactUs extends Component {
   state = {
@@ -94,11 +95,15 @@ class ContactUs extends Component {
 
   render() {
     return (
-      <Form.PageContainer>
+    <PageContainer>
+        <NavBar/>
+        <Form.PageContainer>
         <Form.FormContainer>
             {this.configureDisplay()}
         </Form.FormContainer>
       </Form.PageContainer>
+    </PageContainer>
+
     );
   }
 }

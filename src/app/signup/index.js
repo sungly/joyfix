@@ -3,6 +3,8 @@ import {withRouter} from "react-router-dom";
 
 import Context from "../context";
 import Form from '../shared/FormContainer';
+import NavBar from '../nav'
+import { PageContainer } from '../shared/PageContainer'
 
 
 class Signup extends Component {
@@ -78,58 +80,61 @@ class Signup extends Component {
 
   render() {
     return (
-      <Form.PageContainer>
-        <Context.Provider>
-          <Context.Consumer>
-            {
-              context => {
-                return (
-                  <Form.FormContainer>
-                      <h1>Sign up to access dashboard!</h1>
-                      <input 
-                        type="text" 
-                        placeholder="Username" 
-                        required={true}
-                        onChange={ e => this.handleInputChange(e, 'username')}/>
+      <PageContainer>
+        <NavBar />
+        <Form.PageContainer>
+          <Context.Provider>
+            <Context.Consumer>
+              {
+                context => {
+                  return (
+                    <Form.FormContainer>
+                        <h1>Sign up to access dashboard!</h1>
+                        <input 
+                          type="text" 
+                          placeholder="Username" 
+                          required={true}
+                          onChange={ e => this.handleInputChange(e, 'username')}/>
+                          
+                        <input 
+                          type="tel" 
+                          placeholder="Phone Number" 
+                          required={true}
+                          onChange={e => this.handleInputChange(e, 'phone_number')}/>
                         
-                      <input 
-                        type="tel" 
-                        placeholder="Phone Number" 
-                        required={true}
-                        onChange={e => this.handleInputChange(e, 'phone_number')}/>
-                      
-                      <input 
-                        type="email" 
-                        placeholder="Email" 
-                        required={true}
-                        onChange={e => this.handleInputChange(e, 'email')}/>
-                      <input 
-                        type="password" 
-                        placeholder="password" 
-                        required={true}
-                        onChange={e => this.handleInputChange(e, 'password')}/>
+                        <input 
+                          type="email" 
+                          placeholder="Email" 
+                          required={true}
+                          onChange={e => this.handleInputChange(e, 'email')}/>
+                        <input 
+                          type="password" 
+                          placeholder="password" 
+                          required={true}
+                          onChange={e => this.handleInputChange(e, 'password')}/>
 
-                      <label >
-                        <input type="checkbox" onClick={e => this.handleInputChange(e, 'tc')}/>
-                        I agree to the terms and conditions of Joyfix.
-                      </label>
+                        <label >
+                          <input type="checkbox" onClick={e => this.handleInputChange(e, 'tc')}/>
+                          I agree to the terms and conditions of Joyfix.
+                        </label>
 
-                      {
-                      (this.state.invalid_submission? 
-                          <Form.ErrorMessage>
-                            Missing values: {this.state.missing_values.join(', ')}
-                          </Form.ErrorMessage> : null)
-                      }
-                      <Form.Button onClick={() => this.handleSignup(context.registerAccount)}>
-                        Submit
-                      </Form.Button>
-                  </Form.FormContainer>
-                )
+                        {
+                        (this.state.invalid_submission? 
+                            <Form.ErrorMessage>
+                              Missing values: {this.state.missing_values.join(', ')}
+                            </Form.ErrorMessage> : null)
+                        }
+                        <Form.Button onClick={() => this.handleSignup(context.registerAccount)}>
+                          Submit
+                        </Form.Button>
+                    </Form.FormContainer>
+                  )
+                }
               }
-            }
-          </Context.Consumer>
-        </Context.Provider>
-      </Form.PageContainer>
+            </Context.Consumer>
+          </Context.Provider>
+        </Form.PageContainer>
+      </PageContainer>
     );
   }
 }
