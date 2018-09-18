@@ -10,10 +10,26 @@
     "react-scripts": "1.1.5",
     "styled-components": "^3.4.5"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "precommit": "lint-staged",
+    "pretty": "prettier --write \"**/*.{json, js}\""
+  },
+  "devDependencies": {
+    "prettier": "1.14.2"
   }
 }
