@@ -42,13 +42,14 @@ const Button = styled.div`
 
 const ProgressContainer = styled.div`
   width: 100%;
+  margin: 0 auto;
 `;
 
 const ProgressBar = styled.ul`
   display: flex;
   flex-direction: row;
   list-style: none;
-
+  justify-content: center;
   counter-reset: step;
 `;
 
