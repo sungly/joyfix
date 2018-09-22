@@ -135,6 +135,10 @@ const SuccessMessage = styled.h1`
   color: green;
 `;
 
+const CancelButton = styled.button`
+  color: red;
+`;
+
 class Dashboard extends Component {
   state = {
     active_tab: 'appointment',
@@ -239,6 +243,31 @@ class Dashboard extends Component {
     } else {
       this.setState({ completed_step: 2 }, () => {
         setTimeout(() => this.setState({ completed_step: 3 }), 2000);
+      });
+    }
+  };
+
+  handleCancel = () => {
+    let flag = false;
+    if (window.confirm('Confirm Cancellation.')) {
+      flag = true;
+    } else {
+      flag = false;
+    }
+    console.log(flag);
+    if (flag) {
+      this.setState({
+        appointment_info: {
+          service_selected: '',
+          make: '',
+          model: '',
+          home_address: '',
+          phone_number: '',
+          additional_info: '',
+          license_plate: '',
+          test: new Date()
+        },
+        completed_step: 0
       });
     }
   };
@@ -393,6 +422,8 @@ class Dashboard extends Component {
               <p>Service: {this.state.appointment_info.service_selected}</p>
               <p>Date: {String(this.state.date)}</p>
               <p>Location: {this.state.appointment_info.home_address}</p>
+
+              <CancelButton onClick={this.handleCancel}>Cancel</CancelButton>
             </div>
           ) : (
             <p>No active appointments</p>
