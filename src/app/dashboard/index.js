@@ -6,6 +6,7 @@ import DateTimePicker from 'react-datetime-picker';
 
 import Form from '../shared/FormContainer';
 import { PageContainer } from '../shared/PageContainer';
+import Context from '../context';
 
 const TabContainer = styled.div`
   display: flex;
@@ -244,138 +245,159 @@ class Dashboard extends Component {
 
   configureStep = () => {
     const { completed_step } = this.state;
-    if (completed_step === 0) {
-      return (
-        <StepContainer>
-          <h3>Select a service</h3>
 
-          <RadioContainer>
-            <label>
-              <input
-                type="radio"
-                value="Wipers Change"
-                name="service"
-                onClick={e => this.handleSelectService(e)}
-              />{' '}
-              Wipers Change{' '}
-            </label>
-            <br />
-            <label>
-              <input
-                type="radio"
-                value="Oil Change"
-                name="service"
-                onClick={e => this.handleSelectService(e)}
-              />{' '}
-              Oil Change{' '}
-            </label>
-            <br />
-            <label>
-              <input
-                type="radio"
-                value="Car Inspection"
-                name="service"
-                onClick={e => this.handleSelectService(e)}
-              />{' '}
-              Car Inspection{' '}
-            </label>
-            <br />
-            <label>
-              <input
-                type="radio"
-                value="Air Filter Change"
-                name="service"
-                onClick={e => this.handleSelectService(e)}
-              />{' '}
-              Air Filter Change{' '}
-            </label>
-            <br />
-            <label>
-              <input
-                type="radio"
-                value="Tire Change"
-                name="service"
-                onClick={e => this.handleSelectService(e)}
-              />{' '}
-              Tire Change
-            </label>
-            <ButtonContainer>
-              <Form.Button onClick={this.handleServiceContinue}>Continue</Form.Button>
-            </ButtonContainer>
-          </RadioContainer>
-        </StepContainer>
-      );
-    } else if (completed_step === 1) {
-      return (
-        <StepContainer>
-          <Form.FormContainer>
-            <input
-              type="text"
-              placeholder="Make"
-              onChange={e => this.handleInputChange(e, 'make')}
-            />
-            <input
-              type="text"
-              placeholder="Model"
-              onChange={e => this.handleInputChange(e, 'model')}
-            />
-            <input
-              type="text"
-              placeholder="License Plate Number"
-              onChange={e => this.handleInputChange(e, 'license_plate')}
-            />
-            <input
-              type="text"
-              placeholder="Home Address"
-              onChange={e => this.handleInputChange(e, 'home_address')}
-            />
-            <input
-              type="text"
-              placeholder="Phone Number"
-              onChange={e => this.handleInputChange(e, 'phone_number')}
-            />
-          </Form.FormContainer>
-          <div>
-            <DateTimePicker onChange={this.handleDateChange} value={this.state.date} />
+    if (this.state.active_tab === 'appointment') {
+      if (completed_step === 0) {
+        return (
+          <StepContainer>
+            <h3>Select a service</h3>
+
+            <RadioContainer>
+              <label>
+                <input
+                  type="radio"
+                  value="Wipers Change"
+                  name="service"
+                  onClick={e => this.handleSelectService(e)}
+                />{' '}
+                Wipers Change{' '}
+              </label>
+              <br />
+              <label>
+                <input
+                  type="radio"
+                  value="Oil Change"
+                  name="service"
+                  onClick={e => this.handleSelectService(e)}
+                />{' '}
+                Oil Change{' '}
+              </label>
+              <br />
+              <label>
+                <input
+                  type="radio"
+                  value="Car Inspection"
+                  name="service"
+                  onClick={e => this.handleSelectService(e)}
+                />{' '}
+                Car Inspection{' '}
+              </label>
+              <br />
+              <label>
+                <input
+                  type="radio"
+                  value="Air Filter Change"
+                  name="service"
+                  onClick={e => this.handleSelectService(e)}
+                />{' '}
+                Air Filter Change{' '}
+              </label>
+              <br />
+              <label>
+                <input
+                  type="radio"
+                  value="Tire Change"
+                  name="service"
+                  onClick={e => this.handleSelectService(e)}
+                />{' '}
+                Tire Change
+              </label>
+              <ButtonContainer>
+                <Form.Button onClick={this.handleServiceContinue}>Continue</Form.Button>
+              </ButtonContainer>
+            </RadioContainer>
+          </StepContainer>
+        );
+      } else if (completed_step === 1) {
+        return (
+          <StepContainer>
             <Form.FormContainer>
               <input
-                type="textbox"
-                placeholder="Additional information"
-                onChange={e => this.handleInputChange(e, 'additional_information')}
+                type="text"
+                placeholder="Make"
+                onChange={e => this.handleInputChange(e, 'make')}
               />
-              {this.state.invalid_submission ? (
-                <Form.ErrorMessage>
-                  Missing values: {this.state.missing_values.join(', ')}
-                </Form.ErrorMessage>
-              ) : null}
+              <input
+                type="text"
+                placeholder="Model"
+                onChange={e => this.handleInputChange(e, 'model')}
+              />
+              <input
+                type="text"
+                placeholder="License Plate Number"
+                onChange={e => this.handleInputChange(e, 'license_plate')}
+              />
+              <input
+                type="text"
+                placeholder="Home Address"
+                onChange={e => this.handleInputChange(e, 'home_address')}
+              />
+              <input
+                type="text"
+                placeholder="Phone Number"
+                onChange={e => this.handleInputChange(e, 'phone_number')}
+              />
             </Form.FormContainer>
+            <div>
+              <DateTimePicker onChange={this.handleDateChange} value={this.state.date} />
+              <Form.FormContainer>
+                <input
+                  type="textbox"
+                  placeholder="Additional information"
+                  onChange={e => this.handleInputChange(e, 'additional_information')}
+                />
+                {this.state.invalid_submission ? (
+                  <Form.ErrorMessage>
+                    Missing values: {this.state.missing_values.join(', ')}
+                  </Form.ErrorMessage>
+                ) : null}
+              </Form.FormContainer>
 
-            <Form.Button onClick={this.handleSubmit}>Submit</Form.Button>
-          </div>
-        </StepContainer>
-      );
-    } else if (completed_step === 2) {
-      return (
-        <StepContainer>
-          <h3>loading...</h3>
-        </StepContainer>
-      );
+              <Form.Button onClick={this.handleSubmit}>Submit</Form.Button>
+            </div>
+          </StepContainer>
+        );
+      } else if (completed_step === 2) {
+        return (
+          <StepContainer>
+            <h3>loading...</h3>
+          </StepContainer>
+        );
+      } else {
+        return (
+          <StepContainer>
+            <SuccessMessage>Requested Submitted!</SuccessMessage>
+            <h3>Appointment Summary</h3>
+
+            <p>Service: {this.state.appointment_info.service_selected}</p>
+            <p>
+              Car Make & Model: {this.state.appointment_info.make}{' '}
+              {this.state.appointment_info.model}
+            </p>
+            <p>Home address: {this.state.appointment_info.home_address}</p>
+            <p>Phone Number: {this.state.appointment_info.phone_number}</p>
+            <p>License Plate: {this.state.appointment_info.license_plate}</p>
+
+            <p>Date: {String(this.state.date)}</p>
+          </StepContainer>
+        );
+      }
     } else {
       return (
-        <StepContainer>
-          <SuccessMessage>Requested Submitted!</SuccessMessage>
-          <h3>Appointment Summary</h3>
-
-          <p>Service: {this.state.appointment_info.service_selected}</p>
-          <p>
-            Car Make & Model: {this.state.appointment_info.make} {this.state.appointment_info.model}
-          </p>
-          <p>Home address: {this.state.appointment_info.home_address}</p>
-          <p>Phone Number: {this.state.appointment_info.phone_number}</p>
-          <p>License Plate: {this.state.appointment_info.license_plate}</p>
-
-          <p>Date: {String(this.state.date)}</p>
-        </StepContainer>
+        <div>
+          {this.state.appointment_info.service_selected &&
+          this.state.date &&
+          this.state.appointment_info.home_address ? (
+            <div>
+              <h2>In Progress</h2>
+              <p>Service: {this.state.appointment_info.service_selected}</p>
+              <p>Date: {String(this.state.date)}</p>
+              <p>Location: {this.state.appointment_info.home_address}</p>
+            </div>
+          ) : (
+            <p>No active appointments</p>
+          )}
+        </div>
       );
     }
   };
@@ -384,30 +406,35 @@ class Dashboard extends Component {
     const stepDisplay = this.configureStep();
 
     return (
-      <PageContainer>
-        <TabContainer>
-          <Button
-            active={this.state.active_tab === 'appointment'}
-            onClick={() => this.handleTabClick('appointment')}
-          >
-            Book appointment
-          </Button>
-          <Button
-            active={this.state.active_tab === 'history'}
-            onClick={() => this.handleTabClick('history')}
-          >
-            History
-          </Button>
-        </TabContainer>
-        <ProgressContainer>
-          <ProgressBar>
-            <Step active={this.state.completed_step >= 1}>Select a service</Step>
-            <Step active={this.state.completed_step >= 2}>Fill out information</Step>
-            <Step active={this.state.completed_step >= 3}>Done</Step>
-          </ProgressBar>
-        </ProgressContainer>
-        {stepDisplay}
-      </PageContainer>
+      <Context.Provider>
+        <PageContainer>
+          <TabContainer>
+            <Button
+              active={this.state.active_tab === 'appointment'}
+              onClick={() => this.handleTabClick('appointment')}
+            >
+              Book appointment
+            </Button>
+            <Button
+              active={this.state.active_tab === 'history'}
+              onClick={() => this.handleTabClick('history')}
+            >
+              History
+            </Button>
+          </TabContainer>
+          {this.state.active_tab === 'appointment' ? (
+            <ProgressContainer>
+              <ProgressBar>
+                <Step active={this.state.completed_step >= 1}>Select a service</Step>
+                <Step active={this.state.completed_step >= 2}>Fill out information</Step>
+                <Step active={this.state.completed_step >= 3}>Done</Step>
+              </ProgressBar>
+            </ProgressContainer>
+          ) : null}
+
+          {stepDisplay}
+        </PageContainer>
+      </Context.Provider>
     );
   }
 }

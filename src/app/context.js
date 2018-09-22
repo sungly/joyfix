@@ -20,7 +20,11 @@ const default_values = {
       email: 'admin@admin.com',
       t_and_c: true
     }
-  ]
+  ],
+  appointments: {
+    active: {},
+    previous: []
+  }
 };
 
 const Context = React.createContext();
