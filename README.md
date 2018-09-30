@@ -1,10 +1,16 @@
 ## Joyfix
 
-NOTE: To run this project locally, you will need to have node installed on your local machine.
+NOTE: To run this project locally, you will need to have node installed on your local machine. - Node download: https://nodejs.org/en/download/
 
 or visit: https://joyfix.herokuapp.com for the live version.
 
-For optimal experience, visit the website on a computer full screen :D
+For optimal experience, visit the website on recent chrome browser will screen :D
+
+### To run the project locally
+
+    - open terminal and go to this project directory
+    - run `npm install` to install project dependencies
+    - run `npm start` to start the project on localhost:3000
 
 ### 3rd-party libraries:
 
@@ -12,8 +18,7 @@ For optimal experience, visit the website on a computer full screen :D
     2. react-router-dom
     3. styled-components
 
-### To run the project locally
+## Login or Sign up
 
-    - open terminal and go to this project directory
-    - run `npm install`
-    - run `npm start`
+    - username: `admin`
+    - password: `admin`
