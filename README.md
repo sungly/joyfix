@@ -4,7 +4,7 @@ NOTE: To run this project locally, you will need to have node installed on your 
 
 or visit: https://joyfix.herokuapp.com for the live version.
 
-For optimal experience, visit the website on recent chrome browser will screen :D
+For optimal experience, visit the website on recent chrome browser full screen :D
 
 ### To run the project locally
 
